@@ -39,6 +39,10 @@ async function bootstrap() {
         },
         'access-token',
       )
+      .addTag('사용자', '가입, 로그인, 정보 조회')
+      .addTag('이벤트', '이벤트 조회, 리워드 요청')
+      .addTag('[관리] 사용자', '사용자 정보 수정')
+      .addTag('[관리] 이벤트', '이벤트 생성, 보상 추가, 보상 요청 관리')
       .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/api', app, document, {

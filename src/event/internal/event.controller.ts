@@ -25,7 +25,6 @@ import { AccessTokenPayload } from '../../common/interface/auth-payload.interfac
 
 @ApiTags('이벤트')
 @Controller('gateway/event')
-@ApiBearerAuth('access-token')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
@@ -42,6 +41,7 @@ export class EventController {
   }
 
   @Get('reward-request')
+  @ApiBearerAuth('access-token')
   @ApiOperation({
     summary: '리워드 요청 목록 조회',
     description: '리워드 요청 목록을 조회합니다.',
@@ -72,6 +72,7 @@ export class EventController {
   }
 
   @Roles(UserRole.USER)
+  @ApiBearerAuth('access-token')
   @Post(':eventId/reward-request')
   @ApiOperation({
     summary: '리워드 요청',

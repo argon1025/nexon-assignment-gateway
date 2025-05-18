@@ -25,8 +25,8 @@ export class UserAdminController {
   @Patch(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({
-    summary: '사용자 정보 수정',
-    description: '[관리자] 사용자 정보를 수정합니다.',
+    summary: '[관리자] 사용자 정보 수정',
+    description: '사용자 정보를 수정합니다.',
   })
   @ApiBadRequestResponse({ description: '[GATEWAY_000002] 유효하지 않은 파라미터', type: ErrorResponse })
   @ApiUnauthorizedResponse({

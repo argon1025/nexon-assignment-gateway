@@ -26,9 +26,9 @@ export class EventAdminController {
   constructor(private readonly eventAdminService: EventAdminService) {}
 
   @Get('reward-request')
-  @Roles(UserRole.ADMIN, UserRole.OPERATOR)
+  @Roles(UserRole.ADMIN, UserRole.OPERATOR, UserRole.AUDITOR)
   @ApiOperation({
-    summary: '이벤트 보상 요청 목록 조회',
+    summary: '[관리자, 운영자, 감사자] 이벤트 보상 요청 목록 조회',
     description: '이벤트 보상 요청 목록을 조회합니다.',
   })
   @ApiUnauthorizedResponse({
@@ -47,7 +47,7 @@ export class EventAdminController {
   @Post()
   @Roles(UserRole.ADMIN, UserRole.OPERATOR)
   @ApiOperation({
-    summary: '이벤트 생성',
+    summary: '[관리자, 운영자] 이벤트 생성',
     description: '이벤트를 생성합니다.',
   })
   @ApiUnauthorizedResponse({
@@ -67,7 +67,7 @@ export class EventAdminController {
   @Post(':eventId/reward')
   @Roles(UserRole.ADMIN, UserRole.OPERATOR)
   @ApiOperation({
-    summary: '이벤트 보상 추가',
+    summary: '[관리자, 운영자] 이벤트 보상 추가',
     description: '이벤트 보상을 추가합니다.',
   })
   @ApiUnauthorizedResponse({
