@@ -14,4 +14,5 @@ export const ERROR_CODE: Record<string, ErrorDetail> = {
   USER_LOGIN_FAILED: { name: 'GATEWAY_100002', message: '로그인에 실패했습니다.' },
   USER_INFO_GET_FAILED: { name: 'GATEWAY_100003', message: '고객 정보 조회에 실패했습니다.' },
   USER_ALREADY_EXIST: { name: 'GATEWAY_100004', message: '이미 존재하는 이메일입니다.' },
+  USER_NOT_FOUND: { name: 'GATEWAY_100005', message: '존재하지 않는 사용자입니다.' },
 };

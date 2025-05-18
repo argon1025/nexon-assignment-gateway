@@ -1,4 +1,4 @@
-import { UserRole } from '../common/enum/common.enum';
+import { UserRole } from '../../common/enum/common.enum';
 
 /** 회원가입 옵션 */
 export interface CreateUserOptions {

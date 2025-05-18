@@ -14,9 +14,9 @@ import {
   LoginUserOptions,
   LoginUserResult,
 } from './user.interface';
-import { AuthApi } from '../api/auth/auth.api';
-import { AuthApiException } from '../api/auth/auth.exception';
-import { ERROR_CODE } from '../common/exception/error-code';
+import { AuthApi } from '../../api/auth/auth.api';
+import { AuthApiException } from '../../api/auth/auth.exception';
+import { ERROR_CODE } from '../../common/exception/error-code';
 
 @Injectable()
 export class UserService {

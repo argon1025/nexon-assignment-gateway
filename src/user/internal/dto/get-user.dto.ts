@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
-import { UserRole } from '../../common/enum/common.enum';
+import { UserRole } from '../../../common/enum/common.enum';
 
 @Exclude()
 export class GetUserRes {
