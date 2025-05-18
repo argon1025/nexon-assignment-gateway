@@ -8,10 +8,13 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { Request } from 'express';
 import { ClsModule } from 'nestjs-cls';
 
+import { AuthModule } from './auth/auth.module';
+import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
+import { RolesGuard } from './auth/guard/roles.guard';
 import { AllExceptionsFilter } from './common/exception/all-exception.filter';
 import { ERROR_CODE } from './common/exception/error-code';
 import { RequestLoggingMiddleware } from './common/middleware/request-logging.middleware';
@@ -38,6 +41,7 @@ import { HealthController } from './health/health.controller';
         },
       },
     }),
+    AuthModule,
   ],
   controllers: [HealthController],
   providers: [
@@ -60,6 +64,16 @@ import { HealthController } from './health/health.controller';
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
+    },
+    {
+      /** JWT 인증 가드 전역 설정 */
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      /** 권한 가드 전역 설정 */
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })
