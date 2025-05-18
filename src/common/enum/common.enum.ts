@@ -14,14 +14,24 @@ export enum UserRole {
 
 /** 이벤트 조건 유형 */
 export enum EventConditionType {
-  TEST_CONDITION = 'TEST_CONDITION',
+  /** 특정 퀘스트 클리어 */
+  QUEST_CLEAR = 'QUEST_CLEAR',
+  /** 연속 출석 */
+  CONTINUOUS_ATTENDANCE = 'CONTINUOUS_ATTENDANCE',
+  /** 친구 초대 */
+  FRIEND_INVITATION = 'FRIEND_INVITATION',
 }
 
 /** 이벤트 보상 유형 */
 export enum RewardType {
-  TEST_REWARD = 'TEST_REWARD',
+  /** 메소 */
   MESO = 'MESO',
+  /** 캐시 */
   CASH = 'CASH',
+  /** 아이템 */
+  ITEM = 'ITEM',
+  /** 쿠폰 */
+  COUPON = 'COUPON',
 }
 
 /** 이벤트 보상 지급처리 상태 */

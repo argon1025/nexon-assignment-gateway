@@ -25,6 +25,11 @@ export class CreateRewardAdminReq {
   @IsBoolean()
   @ApiProperty({ description: '보상 지급 시 운영자 승인 필요 여부', default: false })
   isApprovalRequired: boolean = false;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ description: '보상 추가정보', default: null })
+  additionalInfo: string | null = null;
 }
 
 @Exclude()

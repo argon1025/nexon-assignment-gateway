@@ -57,7 +57,13 @@ export class EventAdminController {
     `,
     type: ErrorResponse,
   })
-  @ApiBadRequestResponse({ description: '[GATEWAY_000002] 유효하지 않은 파라미터', type: ErrorResponse })
+  @ApiBadRequestResponse({
+    description: `
+    - [GATEWAY_000002] 유효하지 않은 파라미터
+    - [GATEWAY_200007] 이벤트 조건 메타데이터 형식 오류
+    `,
+    type: ErrorResponse,
+  })
   @ApiConflictResponse({ description: '[GATEWAY_200006] 이미 존재하는 이벤트 코드', type: ErrorResponse })
   @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
   async createEvent(@Body() body: CreateEventAdminReq) {
@@ -74,6 +80,13 @@ export class EventAdminController {
     description: `
     - [GATEWAY_000003] 토큰정보 유효하지 않음
     - [GATEWAY_000004] 접근 권한이 없음
+    `,
+    type: ErrorResponse,
+  })
+  @ApiBadRequestResponse({
+    description: `
+    - [GATEWAY_000002] 유효하지 않은 파라미터
+    - [GATEWAY_200008] 보상 추가정보 형식 오류
     `,
     type: ErrorResponse,
   })

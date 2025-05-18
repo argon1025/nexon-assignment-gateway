@@ -71,6 +71,10 @@ export class GetRewardRequestsAdminListItem {
   rewardQuantity: number;
 
   @Expose()
+  @ApiProperty({ description: '보상 추가정보', example: '1만 메소' })
+  rewardAdditionalInfo: string | null;
+
+  @Expose()
   @ApiProperty({ description: '보상 요청 상태' })
   status: RewardRequestStatus;
 

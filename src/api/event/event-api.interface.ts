@@ -60,6 +60,8 @@ export interface GetRewardsResponse {
     quantity: number;
     /** 보상 제목 */
     title: string;
+    /** 보상 추가정보 */
+    additionalInfo: string | null;
     /** 생성 시각 */
     createdAt: Date;
     /** 수정 시각 */
@@ -105,6 +107,8 @@ export interface GetRewardRequestsResponse {
     rewardTitle: string;
     /** 보상 수량 */
     rewardQuantity: number;
+    /** 보상 추가정보 */
+    rewardAdditionalInfo: string | null;
     /** 보상 요청 상태 */
     status: RewardRequestStatus;
     /** 마지막 처리상태 변경 사유 */
@@ -161,6 +165,8 @@ export interface CreateRewardOptions {
   quantity: number;
   /** 보상 제목 */
   title: string;
+  /** 보상 추가정보 */
+  additionalInfo: string | null;
   /** 운영자 승인 필요 여부 */
   isApprovalRequired: boolean;
 }
@@ -205,6 +211,8 @@ export interface GetAdminRewardRequestsResponse {
     rewardTitle: string;
     /** 보상 수량 */
     rewardQuantity: number;
+    /** 보상 추가정보 */
+    rewardAdditionalInfo: string | null;
     /** 보상 요청 상태 */
     status: RewardRequestStatus;
     /** 마지막 처리상태 변경 사유 */
