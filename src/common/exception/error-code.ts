@@ -24,4 +24,6 @@ export const ERROR_CODE: Record<string, ErrorDetail> = {
   EVENT_ALREADY_REQUESTED: { name: 'GATEWAY_200004', message: '이미 신청한 이벤트입니다.' },
   EVENT_NO_REWARD_AVAILABLE: { name: 'GATEWAY_200005', message: '신청할 수 있는 보상이 없습니다.' },
   EVENT_CODE_ALREADY_EXIST: { name: 'GATEWAY_200006', message: '이미 존재하는 이벤트 코드입니다.' },
+  EVENT_CONDITION_METADATA_FORMAT_ERROR: { name: 'GATEWAY_200007', message: '이벤트 조건 메타데이터 형식 오류' },
+  EVENT_REWARD_ADDITIONAL_INFO_FORMAT_ERROR: { name: 'GATEWAY_200008', message: '보상 추가정보 기재 오류' },
 };

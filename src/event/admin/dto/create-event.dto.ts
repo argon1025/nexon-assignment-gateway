@@ -1,10 +1,19 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type, Exclude, Expose } from 'class-transformer';
-import { IsEnum, IsObject, IsString, IsNotEmpty, IsDateString, IsOptional, IsBoolean } from 'class-validator';
+import {
+  IsEnum,
+  IsObject,
+  IsString,
+  IsNotEmpty,
+  IsDateString,
+  IsOptional,
+  IsBoolean,
+  ValidateNested,
+} from 'class-validator';
 
 import { EventConditionType } from '../../../common/enum/common.enum';
 
-export class CreateEventConditionAdminReq {
+export class CreateEventConditionAdminItem {
   @IsEnum(EventConditionType)
   @ApiProperty({ description: '이벤트 참여 조건 타입' })
   type: EventConditionType;
@@ -33,14 +42,15 @@ export class CreateEventAdminReq {
   @ApiProperty({ description: '이벤트 설명', example: '모두가 참여할 수 있는 이벤트!' })
   description: string;
 
-  @Type(() => CreateEventConditionAdminReq)
   @ApiProperty({
     description: '이벤트 참여 조건 (null이면 무조건 참여 가능)',
     default: null,
-    type: CreateEventConditionAdminReq,
-    example: { type: 'TEST_CONDITION', metadata: { key: 'value' } },
+    type: CreateEventConditionAdminItem,
+    example: { type: 'QUEST_CLEAR', metadata: { key: 'value' } },
   })
-  condition: CreateEventConditionAdminReq | null = null;
+  @ValidateNested()
+  @Type(() => CreateEventConditionAdminItem)
+  condition: CreateEventConditionAdminItem | null = null;
 
   @IsDateString()
   @ApiProperty({ description: '이벤트 시작 시각 (ISO8601 UTC 형식)', example: '2025-06-01T00:00:00Z' })

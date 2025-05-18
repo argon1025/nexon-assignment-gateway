@@ -1,4 +1,11 @@
-import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 
 import {
   AdminCreateEventOptions,
@@ -30,6 +37,10 @@ export class EventAdminService {
         case 'EVENT10002': {
           throw new ConflictException(ERROR_CODE.EVENT_CODE_ALREADY_EXIST);
         }
+        // 이벤트 조건 메타데이터 형식 오류
+        case 'EVENT10011': {
+          throw new BadRequestException(ERROR_CODE.EVENT_CONDITION_METADATA_FORMAT_ERROR);
+        }
         default: {
           Logger.error(`이벤트 생성 요청 처리 중 알 수 없는 오류발생`, error);
           throw new InternalServerErrorException(ERROR_CODE.INTERNAL_SERVER_ERROR);
@@ -51,6 +62,10 @@ export class EventAdminService {
         // 이벤트를 찾을 수 없음
         case 'EVENT10005': {
           throw new NotFoundException(ERROR_CODE.EVENT_NOT_FOUND);
+        }
+        // 보상 추가정보 기재 오류
+        case 'EVENT20006': {
+          throw new BadRequestException(ERROR_CODE.EVENT_REWARD_ADDITIONAL_INFO_FORMAT_ERROR);
         }
         default: {
           Logger.error(`이벤트 보상 추가 요청 처리 중 알 수 없는 오류발생`, error);
