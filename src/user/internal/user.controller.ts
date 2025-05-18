@@ -43,6 +43,7 @@ export class UserController {
     summary: '로그인',
     description: '이메일과 비밀번호를 입력하여 로그인합니다.',
   })
+  @ApiBadRequestResponse({ description: '[GATEWAY_000002] 유효하지 않은 파라미터', type: ErrorResponse })
   @ApiUnauthorizedResponse({ description: '[GATEWAY_100002] 로그인 실패', type: ErrorResponse })
   @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
   async loginUser(@Body() body: LoginUserReq) {
