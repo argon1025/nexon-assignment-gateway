@@ -6,4 +6,6 @@ import { ErrorDetail } from '../dto/error-response.dto';
 export const ERROR_CODE: Record<string, ErrorDetail> = {
   INTERNAL_SERVER_ERROR: { name: 'INTERNAL_SERVER_ERROR', message: '서버 오류' },
   PARAMETER_INVALID: { name: 'PARAMETER_INVALID', message: '파라미터 누락 또는 유효하지 않음' },
+  INVALID_TOKEN: { name: 'INVALID_TOKEN', message: '유효하지 않은 토큰입니다.' },
+  FORBIDDEN: { name: 'FORBIDDEN', message: '접근 권한이 없습니다.' },
 };
