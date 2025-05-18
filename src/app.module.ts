@@ -19,6 +19,7 @@ import { AllExceptionsFilter } from './common/exception/all-exception.filter';
 import { ERROR_CODE } from './common/exception/error-code';
 import { RequestLoggingMiddleware } from './common/middleware/request-logging.middleware';
 import { HealthController } from './health/health.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { HealthController } from './health/health.controller';
       },
     }),
     AuthModule,
+    UserModule,
   ],
   controllers: [HealthController],
   providers: [
