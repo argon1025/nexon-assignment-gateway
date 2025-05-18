@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class LoginUserReq {
   @IsEmail()
@@ -10,7 +10,9 @@ export class LoginUserReq {
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ description: '비밀번호', example: 'password' })
+  @MinLength(8)
+  @MaxLength(20)
+  @ApiProperty({ description: '비밀번호 (8자 이상 20자 이하)', example: 'password' })
   password: string;
 }
 
