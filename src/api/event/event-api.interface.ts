@@ -4,6 +4,8 @@ import { EventConditionType, RewardRequestStatus, RewardType } from '../../commo
 export interface GetEventsOptions {
   page: number;
   size: number;
+  /** 이벤트 ID */
+  id?: string;
 }
 
 /** 이벤트 목록 조회 결과 */
