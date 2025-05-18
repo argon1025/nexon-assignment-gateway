@@ -14,10 +14,10 @@ import { CreateUserReq, CreateUserRes } from './dto/create-user.dto';
 import { GetUserRes } from './dto/get-user.dto';
 import { LoginUserReq, LoginUserRes } from './dto/login-user.dto';
 import { UserService } from './user.service';
-import { Public } from '../common/decorator/public.decorator';
-import { User } from '../common/decorator/user.decorator';
-import { ErrorResponse } from '../common/dto/error-response.dto';
-import { AccessTokenPayload } from '../common/interface/auth-payload.interface';
+import { Public } from '../../common/decorator/public.decorator';
+import { User } from '../../common/decorator/user.decorator';
+import { ErrorResponse } from '../../common/dto/error-response.dto';
+import { AccessTokenPayload } from '../../common/interface/auth-payload.interface';
 
 @ApiTags('사용자')
 @Controller('gateway/user')
