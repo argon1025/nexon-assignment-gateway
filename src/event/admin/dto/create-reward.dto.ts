@@ -6,11 +6,6 @@ import { RewardType } from '../../../common/enum/common.enum';
 
 export class CreateRewardAdminReq {
   @IsNotEmpty()
-  @IsString()
-  @ApiProperty({ description: '보상을 추가 할 이벤트 ID', example: '68285f6b12480962565888f5' })
-  eventId: string;
-
-  @IsNotEmpty()
   @IsEnum(RewardType)
   @ApiProperty({ description: '보상 타입' })
   type: RewardType;

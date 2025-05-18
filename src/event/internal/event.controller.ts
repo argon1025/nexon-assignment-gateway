@@ -75,7 +75,7 @@ export class EventController {
   @ApiBearerAuth('access-token')
   @Post(':eventId/reward-request')
   @ApiOperation({
-    summary: '리워드 요청',
+    summary: '[사용자] 리워드 요청',
     description: '리워드를 요청합니다.',
   })
   @ApiForbiddenResponse({ description: '[GATEWAY_000004] 접근 권한이 없습니다.', type: ErrorResponse })
