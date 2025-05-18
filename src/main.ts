@@ -28,6 +28,17 @@ async function bootstrap() {
       .setTitle(SERVICE_NAME)
       .setDescription(`${SERVICE_NAME} Service API Docs`)
       .setVersion('1.0')
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'Authorization',
+          description: 'Access token issued by Auth Service',
+          in: 'header',
+        },
+        'access-token',
+      )
       .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/api', app, document, {
