@@ -39,6 +39,8 @@ export interface AdminCreateRewardOptions {
   title: string;
   /** 운영자 승인 필요 여부 */
   isApprovalRequired: boolean;
+  /** 보상 추가정보 */
+  additionalInfo: string | null;
 }
 
 /** 보상 생성 결과 */
@@ -81,6 +83,8 @@ export interface AdminGetRewardRequestsResult {
     rewardTitle: string;
     /** 보상 수량 */
     rewardQuantity: number;
+    /** 보상 추가정보 */
+    rewardAdditionalInfo: string | null;
     /** 보상 요청 상태 */
     status: RewardRequestStatus;
     /** 마지막 처리상태 변경 사유 */
