@@ -18,7 +18,7 @@ import { RolesGuard } from './auth/guard/roles.guard';
 import { AllExceptionsFilter } from './common/exception/all-exception.filter';
 import { ERROR_CODE } from './common/exception/error-code';
 import { RequestLoggingMiddleware } from './common/middleware/request-logging.middleware';
-import { EventModule } from './event/internal/event.module';
+import { EventModule } from './event/event.module';
 import { HealthController } from './health/health.controller';
 import { UserModule } from './user/user.module';
 

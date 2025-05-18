@@ -6,7 +6,7 @@ export enum UserRole {
   ADMIN = 'ADMIN',
   /** 운영자 */
   OPERATOR = 'OPERATOR',
-  /** 감시자 */
+  /** 감사자 */
   AUDITOR = 'AUDITOR',
   /** 사용자 */
   USER = 'USER',

@@ -30,9 +30,9 @@ export class UserController {
     summary: '회원가입',
     description: '이메일과 비밀번호를 입력하여 회원가입합니다.',
   })
-  @ApiBadRequestResponse({ description: '[PARAMETER_INVALID] 유효하지 않은 파라미터', type: ErrorResponse })
+  @ApiBadRequestResponse({ description: '[GATEWAY_000002] 유효하지 않은 파라미터', type: ErrorResponse })
   @ApiConflictResponse({ description: '[GATEWAY_100004] 이미 존재하는 이메일', type: ErrorResponse })
-  @ApiInternalServerErrorResponse({ description: '[INTERNAL_SERVER_ERROR] 서버 오류', type: ErrorResponse })
+  @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
   async CreateUserReq(@Body() body: CreateUserReq) {
     return plainToInstance(CreateUserRes, await this.userService.createUser(body));
   }
@@ -44,7 +44,7 @@ export class UserController {
     description: '이메일과 비밀번호를 입력하여 로그인합니다.',
   })
   @ApiUnauthorizedResponse({ description: '[GATEWAY_100002] 로그인 실패', type: ErrorResponse })
-  @ApiInternalServerErrorResponse({ description: '[INTERNAL_SERVER_ERROR] 서버 오류', type: ErrorResponse })
+  @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
   async loginUser(@Body() body: LoginUserReq) {
     return plainToInstance(LoginUserRes, await this.userService.loginUser(body));
   }
@@ -55,8 +55,8 @@ export class UserController {
     summary: '내 정보 조회',
     description: '현재 로그인한 사용자의 정보를 조회합니다.',
   })
-  @ApiUnauthorizedResponse({ description: '[INVALID_TOKEN] 토큰정보 유효하지 않음', type: ErrorResponse })
-  @ApiInternalServerErrorResponse({ description: '[INTERNAL_SERVER_ERROR] 서버 오류', type: ErrorResponse })
+  @ApiUnauthorizedResponse({ description: '[GATEWAY_000003] 토큰정보 유효하지 않음', type: ErrorResponse })
+  @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
   async getMe(@User() user: AccessTokenPayload) {
     return plainToInstance(GetUserRes, await this.userService.getUserInfo(user.id));
   }
