@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto';
 
+import { HttpModule } from '@nestjs/axios';
 import {
   BadRequestException,
   ClassSerializerInterceptor,
@@ -17,6 +18,7 @@ import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 import { RolesGuard } from './auth/guard/roles.guard';
 import { AllExceptionsFilter } from './common/exception/all-exception.filter';
 import { ERROR_CODE } from './common/exception/error-code';
+import { AxiosInterceptor } from './common/interceptor/axios.interceptor';
 import { RequestLoggingMiddleware } from './common/middleware/request-logging.middleware';
 import { EventModule } from './event/event.module';
 import { HealthController } from './health/health.controller';
@@ -43,6 +45,7 @@ import { UserModule } from './user/user.module';
         },
       },
     }),
+    HttpModule,
     AuthModule,
     UserModule,
     EventModule,
@@ -55,17 +58,7 @@ import { UserModule } from './user/user.module';
       useClass: ClassSerializerInterceptor,
     },
     {
-      provide: APP_PIPE,
-      useValue: new ValidationPipe({
-        whitelist: true,
-        transform: true,
-        forbidUnknownValues: true,
-        exceptionFactory: () => {
-          return new BadRequestException(ERROR_CODE.PARAMETER_INVALID);
-        },
-      }),
-    },
-    {
+      /** 전역 exception filter */
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
     },
@@ -79,6 +72,18 @@ import { UserModule } from './user/user.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        whitelist: true,
+        transform: true,
+        forbidUnknownValues: true,
+        exceptionFactory: () => {
+          return new BadRequestException(ERROR_CODE.PARAMETER_INVALID);
+        },
+      }),
+    },
+    AxiosInterceptor,
   ],
 })
 export class AppModule {
