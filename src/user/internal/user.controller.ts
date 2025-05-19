@@ -33,7 +33,7 @@ export class UserController {
   @ApiBadRequestResponse({ description: '[GATEWAY_000002] 유효하지 않은 파라미터', type: ErrorResponse })
   @ApiConflictResponse({ description: '[GATEWAY_100004] 이미 존재하는 이메일', type: ErrorResponse })
   @ApiInternalServerErrorResponse({ description: '[GATEWAY_000001] 서버 오류', type: ErrorResponse })
-  async CreateUserReq(@Body() body: CreateUserReq) {
+  async createUser(@Body() body: CreateUserReq) {
     return plainToInstance(CreateUserRes, await this.userService.createUser(body));
   }
 
