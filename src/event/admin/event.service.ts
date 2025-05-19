@@ -8,6 +8,8 @@ import {
 } from '@nestjs/common';
 
 import {
+  AdminApproveRewardRequestOptions,
+  AdminApproveRewardRequestResult,
   AdminCreateEventOptions,
   AdminCreateEventResult,
   AdminCreateRewardOptions,
@@ -88,6 +90,32 @@ export class EventAdminService {
       return await this.eventApi.getAdminRewardRequests(options);
     } catch (error) {
       throw new InternalServerErrorException(ERROR_CODE.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  /** 보상 요청 승인/거절 처리 */
+  async approveRewardRequest(options: AdminApproveRewardRequestOptions): Promise<AdminApproveRewardRequestResult> {
+    try {
+      return await this.eventApi.approveRewardRequest(options);
+    } catch (error) {
+      let errorCode = '';
+      if (error instanceof EventApiException) {
+        errorCode = error.getErrorCode();
+      }
+      switch (errorCode) {
+        // 보상 요청 상태가 대기중이 아님
+        case 'EVENT30014': {
+          throw new BadRequestException(ERROR_CODE.EVENT_REWARD_REQUEST_NOT_PENDING);
+        }
+        // 보상을 찾을 수 없음
+        case 'EVENT30012': {
+          throw new NotFoundException(ERROR_CODE.EVENT_REWARD_REQUEST_NOT_FOUND);
+        }
+        default: {
+          Logger.error(`이벤트 보상 승인/거절 처리 중 알 수 없는 오류발생`, error);
+          throw new InternalServerErrorException(ERROR_CODE.INTERNAL_SERVER_ERROR);
+        }
+      }
     }
   }
 }
