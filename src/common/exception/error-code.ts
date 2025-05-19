@@ -26,4 +26,6 @@ export const ERROR_CODE: Record<string, ErrorDetail> = {
   EVENT_CODE_ALREADY_EXIST: { name: 'GATEWAY_200006', message: '이미 존재하는 이벤트 코드입니다.' },
   EVENT_CONDITION_METADATA_FORMAT_ERROR: { name: 'GATEWAY_200007', message: '이벤트 조건 메타데이터 형식 오류' },
   EVENT_REWARD_ADDITIONAL_INFO_FORMAT_ERROR: { name: 'GATEWAY_200008', message: '보상 추가정보 기재 오류' },
+  EVENT_REWARD_REQUEST_NOT_FOUND: { name: 'GATEWAY_200009', message: '보상 요청을 찾을 수 없습니다.' },
+  EVENT_REWARD_REQUEST_NOT_PENDING: { name: 'GATEWAY_200010', message: '보상 요청 상태가 대기중이 아닙니다.' },
 };

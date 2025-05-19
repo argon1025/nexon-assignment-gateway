@@ -97,3 +97,21 @@ export interface AdminGetRewardRequestsResult {
   /** 보상 요청 내역 총 개수 */
   total: number;
 }
+
+/** 보상 요청 승인 옵션 */
+export interface AdminApproveRewardRequestOptions {
+  /** 보상 요청 ID */
+  id: string;
+  /** 승인 사유 */
+  reason: string;
+  /** 변경될 상태 */
+  status: RewardRequestStatus.PENDING | RewardRequestStatus.REJECTED;
+  /** 승인자 ID */
+  approvedUserId: string;
+}
+
+/** 보상 요청 승인 응답 */
+export interface AdminApproveRewardRequestResult {
+  /** 보상 요청 ID */
+  id: string;
+}
