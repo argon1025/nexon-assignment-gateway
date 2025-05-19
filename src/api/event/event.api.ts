@@ -5,6 +5,8 @@ import { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 import { lastValueFrom, map, catchError, throwError } from 'rxjs';
 
 import {
+  ApproveRewardRequestOptions,
+  ApproveRewardRequestResponse,
   CreateEventOptions,
   CreateEventResponse,
   CreateRewardOptions,
@@ -162,6 +164,26 @@ export class EventApi {
       this.httpService.request<GetAdminRewardRequestsResponse>(config).pipe(
         map(this.responseHandler),
         catchError((e) => throwError(() => this.errorHandler(e, '[관리자] 이벤트 보상 요청내역 조회'))),
+      ),
+    );
+  }
+
+  /**
+   * [관지라] 보상 승인/거절 처리
+   * PATCH /event/admin/reward-request/{id}/approve
+   */
+  async approveRewardRequest(options: ApproveRewardRequestOptions): Promise<ApproveRewardRequestResponse> {
+    const { id, ...data } = options;
+    const config: AxiosRequestConfig = {
+      method: 'PATCH',
+      url: `${this.baseUrl}/event/admin/reward-request/${id}/approve`,
+      data,
+    };
+
+    return lastValueFrom(
+      this.httpService.request<ApproveRewardRequestResponse>(config).pipe(
+        map(this.responseHandler),
+        catchError((e) => throwError(() => this.errorHandler(e, '[관리자] 보상 승인/거절 처리'))),
       ),
     );
   }
