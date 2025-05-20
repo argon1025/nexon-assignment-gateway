@@ -206,9 +206,9 @@ export class EventApi {
     let data = null;
 
     if (error instanceof AxiosError) {
-      errorMessage += ` [${error.response?.data?.error?.message}]`;
       errorCode = error.response?.data?.error?.name ?? errorCode;
       statusCode = error.response?.status ?? statusCode;
+      errorMessage += ` [${statusCode}][${error.response?.data?.error?.message || 'N/A'}]`;
       data = error.response?.data ?? data;
     } else if (error instanceof Error) {
       errorMessage += ` [${error.message}]`;
