@@ -1,4 +1,4 @@
-import { Catch, ExceptionFilter, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
+import { Catch, ExceptionFilter, ArgumentsHost, HttpException, HttpStatus, Logger } from '@nestjs/common';
 
 import { ERROR_CODE } from './error-code';
 import { ErrorResponse } from '../dto/error-response.dto';
@@ -31,7 +31,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
         message = exception.message;
       }
     } else if (exception instanceof Error) {
-      message = exception.message;
+      // 핸들링 하지 않은 에러 발생 시 로깅
+      Logger.error(`[${exception.name}] 에러처리 필요 (${exception.message})`, exception.stack);
     }
 
     // 에러 응답 반환
